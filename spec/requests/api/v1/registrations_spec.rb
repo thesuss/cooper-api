@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User Registrtion' do
+describe 'User Registration' do
   let(:headers) { {HTTP_ACCEPT: 'application/json'} }
   let(:user) { FactoryGirl.create(:user) }
 
@@ -70,13 +70,14 @@ describe 'User Registrtion' do
   end
 
   describe "PUT '/api/v1/auth/'" do
-
-    it "should redirect to the user path on succesful save" do
+    it "should be able to edit email" do
       put '/api/v1/auth',
-        params: {nickname: "Nick"},
+        params: {id: user.to_param, email: user.email},
         headers: headers
-        expect(user.nickname).to be "nick"
-      #expect(user).to receive(:update_attributes).with(user.nickname).and_return(user)
+      new_email = "new@email.com"
+      user.update_attributes(email: new_email)
+      expect(user.email).to eq "new@email.com"
+      #expect(user).to receive(:update_attributes).with(email: "new@email.com")
     end
   end
 end
