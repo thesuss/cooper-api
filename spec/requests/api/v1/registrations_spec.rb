@@ -79,5 +79,14 @@ describe 'User Registration' do
       expect(user.email).to eq "new@email.com"
       #expect(user).to receive(:update_attributes).with(email: "new@email.com")
     end
+    it "should be able to add nickname" do
+      put '/api/v1/auth',
+        params: {},
+        headers: headers
+      new_nickname = "Nick"
+      user.update_attributes(nickname: new_nickname)
+      expect(user.nickname).to eq "Nick"
+      #expect(user).to receive(:update_attributes).with(nickname: "Nick")
+    end
   end
 end
