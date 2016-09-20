@@ -37,6 +37,23 @@ describe 'Sessions' do
       expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
       expect(response.status).to eq 401
     end
+
+    it 'with an empty password field returns error message' do
+      post '/api/v1/auth/sign_in',
+        params: {email: 'wrong@email.com', password: nil},
+        headers: headers
+      expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
+      expect(response.status).to eq 401
+    end
+    it 'with an empty email field returns error message' do
+      post '/api/v1/auth/sign_in',
+        #nil creates an error in devise
+        params: {email: '', password: user.password},
+        headers: headers
+      expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
+      expect(response.status).to eq 401
+    end
+
   end
 
 end
