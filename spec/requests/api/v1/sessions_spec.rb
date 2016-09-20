@@ -19,7 +19,7 @@ describe 'Sessions' do
                                          'nickname' => nil,
                                          'image' => nil,
                                          'email' => user.email}}
-                               )
+                                  )
     end
 
     it 'invalid password returns error message' do
@@ -47,7 +47,7 @@ describe 'Sessions' do
     end
     it 'with an empty email field returns error message' do
       post '/api/v1/auth/sign_in',
-        #nil creates an error in devise
+        #nil creates an error in devise !downcase
         params: {email: '', password: user.password},
         headers: headers
       expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
