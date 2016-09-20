@@ -30,6 +30,8 @@ module CooperApi
       allow do
         origins '*'
         resource '*', headers: :any, methods: [:get, :post, :put, :delete]
+        expose: %w(access-token expiry token-type uid client),
+        max_age: 0
       end
     end
   end
