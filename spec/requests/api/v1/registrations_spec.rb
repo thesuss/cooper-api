@@ -48,5 +48,14 @@ describe 'User Registrtion' do
         expect(response.status).to eq 422
       end
     end
+    it 'with an empty password field returns error message' do
+      post '/api/v1/auth',
+        params: { email: 'thesuss@susscreations.se',
+                  password: nil,
+                  password_confirmation: nil},
+        headers: headers
+      expect(response_json['errors']['password']).to eq(["can't be blank"])
+      expect(response.status).to eq 422
+    end
   end
 end
