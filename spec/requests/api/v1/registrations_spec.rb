@@ -72,7 +72,7 @@ describe 'User Registration' do
   describe "PUT '/api/v1/auth/'" do
     it "should be able to edit email" do
       put '/api/v1/auth',
-        params: {id: user.to_param, email: user.email},
+        params: {},
         headers: headers
       new_email = "new@email.com"
       user.update_attributes(email: new_email)
