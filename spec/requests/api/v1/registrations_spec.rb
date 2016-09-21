@@ -77,7 +77,6 @@ describe 'User Registration' do
       new_email = "new@email.com"
       user.update_attributes(email: new_email)
       expect(user.email).to eq "new@email.com"
-      #expect(user).to receive(:update_attributes).with(email: "new@email.com")
     end
     it "should be able to add nickname" do
       put '/api/v1/auth',
@@ -86,7 +85,6 @@ describe 'User Registration' do
       new_nickname = "Nick"
       user.update_attributes(nickname: new_nickname)
       expect(user.nickname).to eq "Nick"
-      #expect(user).to receive(:update_attributes).with(nickname: "Nick")
     end
   end
 end
