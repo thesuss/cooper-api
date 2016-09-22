@@ -5,7 +5,7 @@ class Api::V1::PerformanceDataController < ApplicationController
     @data = PerformanceData.new(performance_data_params.merge(user: current_api_v1_user))
 
     if @data.save
-      render json: { message: 'all good' }
+      render json: { message: 'Your data is saved correctly' }
     else
       render json: { error: @data.errors.full_messages }
     end
